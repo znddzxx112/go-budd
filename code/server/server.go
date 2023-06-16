@@ -9,12 +9,14 @@ import (
 	"github.com/jinzhu/configor"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/robfig/cron"
 	"github.com/sirupsen/logrus"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/znddzxx112/go-budd/docs"
 	"github.com/znddzxx112/go-budd/pkg/utils"
 	"github.com/znddzxx112/go-budd/service/qqwry"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -37,6 +39,7 @@ type defaultServer struct {
 	conf   *serverConfig
 	db     *gorm.DB
 	engine *gin.Engine
+	cron   *cron.Cron
 }
 
 func NewServer(name string) Server {
@@ -72,6 +75,10 @@ func (ds *defaultServer) Run(port string, conf string) error {
 		return fmt.Errorf("rs.init(): %s", err.Error())
 	}
 
+	if err := ds.crontab(); err != nil {
+		return fmt.Errorf("rs.crontab(): %s", err.Error())
+	}
+
 	// 6、服务器监听端口
 	if !strings.HasPrefix(port, ":") {
 		port = ":" + port
@@ -81,6 +88,10 @@ func (ds *defaultServer) Run(port string, conf string) error {
 
 // 服务器关闭
 func (ds *defaultServer) Close() error {
+
+	if ds.cron != nil {
+		ds.cron.Stop()
+	}
 
 	if ds.db != nil {
 		if err := ds.db.Close(); err != nil {
@@ -186,4 +197,20 @@ func (ds *defaultServer) init() error {
 		}
 	}()
 	return nil
+}
+
+func (ds *defaultServer) crontab() error {
+	ds.cron = cron.New()
+	err := ds.cron.AddFunc("@every 60s", func() {
+		fmt.Println("=== start cron blockdiff ===")
+
+		fmt.Println("=== end cron blockdiff ===")
+	})
+
+	if err != nil {
+		return fmt.Errorf("bfs.cron.AddFunc: %s", err.Error())
+	}
+
+	//fmt.Printf("=== cron boot : %d  ===\n", entryId)
+	ds.cron.Start()
 }
