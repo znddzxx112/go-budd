@@ -1,12 +1,8 @@
 package server
 
 import (
-	"github.com/dghubble/sling"
-	"net/http"
 	"testing"
 )
-
-var localBase = sling.New().Base("http://127.0.0.1:7890").Client(http.DefaultClient)
 
 func TestPong(t *testing.T) {
 
