@@ -1,0 +1,33 @@
+package utils
+
+import "testing"
+
+func TestRsaEncrypt(t *testing.T) {
+	publicKey := `-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDJXeJIhZB7/Q0N3UMXAvRELZys
+JE7Gs55DzyzrGC/c5Mgcvt0eoze3M5VQFXsi5Rl0Powf9POlQzyt24MHrnA+iAQH
+9m+XGGIP1T45+Y2I6Fk+uQ/gH56ZwyoH0HQNyGxdjKMUf8kv0B55OL6KEpglIfx4
++VQuyF3WySJboaCQowIDAQAB
+-----END PUBLIC KEY-----`
+	t.Log(RsaEncrypt("dede", publicKey))
+}
+
+func TestRsaDecrypt(t *testing.T) {
+	privateKey := `-----BEGIN RSA PRIVATE KEY-----
+MIICXQIBAAKBgQDJXeJIhZB7/Q0N3UMXAvRELZysJE7Gs55DzyzrGC/c5Mgcvt0e
+oze3M5VQFXsi5Rl0Powf9POlQzyt24MHrnA+iAQH9m+XGGIP1T45+Y2I6Fk+uQ/g
+H56ZwyoH0HQNyGxdjKMUf8kv0B55OL6KEpglIfx4+VQuyF3WySJboaCQowIDAQAB
+AoGAHBLzxmqgrzijhkhP3zhxN8QoMLPLK9bE/O04dPplSeW3pJJTn77fuLH/Yi/s
+f/vy5YsG3Dm5clQCdLbC+OIwEbhsjNrVDJQfngUcmTjJiML3pcPwYNstrWNfgtjo
+k/ORuQ2XaZl2XS6wUav8DnMIenEYN7qJ1E8RPF/SOfct5OECQQDp4vyGwclmpsL8
+Mmi0NRrb2Q2D8xy+9LdHEhgFKfJ5gXTBnUwFmaolL8ItZq7d0EfXYYe/nEQku3cJ
+njvtGtPxAkEA3GfIPQ2dBbIpjYU857Ax2itG/S87lkZntWvJyj2rrj5p1b2MKHx/
+VYw4yXPcsEkulV3ePHLUHZvyDmXXqN7x0wJBAKYsOqT33ENNqm2K1y9qJ6oZveuI
++FyH/AvHxD8u/XLs0mqZeqDj+6ouE3U0Znt8dv6E8fDmctfyRXIU9ZjRndECQQC3
+PzIkUKU0jyQtHZG9r6hDE6g56INKNc8T70Iee5e5jvq/UpCtOJVFswejtkjN6Ipq
+dVjIOVBSLc3aWqIrLPExAkBWjA0fSFycjvfKaH2KRKKyg6t1VFWvCG60G+b4sfTP
++J9FuE6VY/Vutd9w1w/ICsyIT+vJpi42GFBcZjLrK+OU
+-----END RSA PRIVATE KEY-----`
+	ciphertext := "h6uCugUtMvyIYKLn7lSBT4CwC/Oo36bhJp0wVqwhXCM+jSHd0PM7NsTwbusd2+M/QQ6vMHC4op3dxOloao+VbL/d0J63dsgDSFptPrsqLtxIlBp+9FgOAxd0m6q9M3qtLMeH/6DhqYNMq1S5NFNmsY8X9tY3RdlNiKH0BL8sJQU="
+	t.Log(RsaDecrypt(ciphertext, privateKey))
+}

@@ -1,0 +1,33 @@
+debug: true
+# jwt secret
+jwt_secret: APPasdfasdfasdf
+# 存真地址库读取地址
+qqwry_path: ./resources/ip/qqwry.dat
+mysql:
+  ip: 127.0.0.1
+  user: root
+  password: 123456
+  port: 3306
+  db_name: budd
+  max_idle: 10
+  max_open: 100
+  charset: utf8mb4
+  log_mode: true
+  loc: Asia/Shanghai
+# rsa private key 1024bit
+rsa_private_key: |
+  -----BEGIN RSA PRIVATE KEY-----
+  MIICXQIBAAKBgQC+Iz9MW33HP4gDL73IecxGHg+RYHk4Se5lmdps2qScs9wNa0x3
+  7OhR/sPd1SBnS44pjnCPAENiyK8cHbErZ0dMm2VMOvB1Hid7K2mlWUIEa27St+vL
+  GCYYY+2zFMk9ouWCbH1nzP2AberoB9kOQqIV9Wmmwa54RDltF4FaDblJGQIDAQAB
+  AoGAfnhjeh7BIu8XQUdYLSkWvuzv3fsVpmNGtz4HE7C7HaBlFmfwjTR/s0qKbdt9
+  mjefb/TW2ceLCwIBt+noFr6zpRJmGSYidlHSkFCWP4v8WNjlzJT7RB1Sqtk0QVdN
+  IHlmq63oHy3WbYUjsFDWjARQiR0HGlg2+3xr3OMHiyu9QqECQQDxbjRFGXN+eGi0
+  zESZYc/JjRBJzovKkAZLPCIM30XwZPzBc6Rfm0Gk+DO8JhpFTNisddkMG0IZVqlE
+  WkbQPmfvAkEAyZyiV34LgvkmFTs7zys0vhQXTwN+xWUpkHQltIgPbm5zmboNt2Sf
+  H0rPDGAMx1826Ov2HfWRepHPD081JCeXdwJBAOIRloJJpbr8FteNGoMhcsdA/sqN
+  zJo9qJcUVLIG8995QLAIkBcyMxK9kvwQFbNklNNQeo/6ijddzZwCiKKAfSMCQQCE
+  sxQngk8RZewrDVHQih+s/Ixa9XH7expgehJXQTbm+Mwd4tgkXZZegl7FRnMixwjd
+  RnI4Ren7Qv2GlhvkMCsBAkAkFPf1kAT59Y90mzTSTUkaWhfksbp1+pMPtr5ZS88O
+  0GS/l6rLOIcV+40nyArPn9u98zp6ApHhMbRR2sqsNJix
+  -----END RSA PRIVATE KEY-----

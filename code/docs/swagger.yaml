@@ -1,0 +1,124 @@
+definitions:
+  server.PongArgs:
+    properties:
+      say:
+        type: string
+    required:
+    - say
+    type: object
+  server.PongVO:
+    properties:
+      res:
+        type: string
+    type: object
+  server.PongVOResult:
+    properties:
+      code:
+        description: 状态码
+        type: integer
+      message:
+        description: 状态短语
+        type: string
+      result:
+        $ref: '#/definitions/server.PongVO'
+        description: 数据结果集
+    type: object
+  server.UserLoginArgs:
+    properties:
+      image_code:
+        type: string
+      image_token:
+        type: string
+      lt:
+        example: ""
+        type: string
+      mobile:
+        example: "18800011122"
+        type: string
+      password:
+        example: "123456"
+        type: string
+    type: object
+  server.UserLoginVO:
+    properties:
+      st:
+        example: ""
+        type: string
+      token:
+        example: TGT-FwLZ7dHoHepX4zMgVdB3WGmqZ94rMsK4
+        type: string
+    type: object
+  server.UserLoginVOResult:
+    properties:
+      code:
+        description: 状态码
+        type: integer
+      message:
+        description: 状态短语
+        type: string
+      result:
+        $ref: '#/definitions/server.UserLoginVO'
+        description: 数据结果集
+    type: object
+info:
+  contact: {}
+  description: budd
+  title: budd
+  version: latest
+paths:
+  /graph/code:
+    get:
+      consumes:
+      - image/jpeg
+      description: 图片验证码
+      responses: {}
+      summary: 图片验证码
+      tags:
+      - 图片验证码模块
+  /health:
+    post:
+      consumes:
+      - application/json
+      description: 应用存活接口
+      parameters:
+      - description: 入参
+        in: body
+        name: args
+        required: true
+        schema:
+          $ref: '#/definitions/server.PongArgs'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 返回结果
+          schema:
+            $ref: '#/definitions/server.PongVOResult'
+      summary: 应用存活接口
+      tags:
+      - 健康模块
+  /user/login:
+    post:
+      consumes:
+      - application/json
+      description: 获取用户信息接口
+      parameters:
+      - description: 账号
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/server.UserLoginArgs'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 登录信息
+          schema:
+            $ref: '#/definitions/server.UserLoginVOResult'
+      summary: 获取用户信息接口
+      tags:
+      - 用户模块
+schemes:
+- '{{scheme}}'
+swagger: "2.0"
